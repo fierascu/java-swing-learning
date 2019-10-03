@@ -4,9 +4,10 @@ import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JTextArea;
 
 class MainFrame extends JFrame {
+
+  private Toolbar toolbar;
 
   private TextPanel textPanel;
 
@@ -17,10 +18,13 @@ class MainFrame extends JFrame {
 
     setLayout(new BorderLayout());
 
+    toolbar = new Toolbar();
     textPanel = new TextPanel();
+
     btn = new JButton("Click me");
     btn.addActionListener((actionEvent) -> textPanel.appendText("Hello\n"));
 
+    add(toolbar, BorderLayout.NORTH);
     add(textPanel, BorderLayout.CENTER);
     add(btn, BorderLayout.SOUTH);
 
