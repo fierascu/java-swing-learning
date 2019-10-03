@@ -8,10 +8,9 @@ import javax.swing.JTextArea;
 
 class TextPanel extends JPanel {
 
-  private JTextArea textArea;
+  private JTextArea textArea = new JTextArea();
 
   TextPanel() {
-    textArea = new JTextArea();
 
     setLayout(new BorderLayout());
 
