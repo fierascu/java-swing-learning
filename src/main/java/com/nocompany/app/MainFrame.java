@@ -6,16 +6,12 @@ import javax.swing.JFrame;
 
 class MainFrame extends JFrame {
 
-  private Toolbar toolbar = new Toolbar();
-
-  private TextPanel textPanel = new TextPanel();
-
   MainFrame() {
     super("Hello World");
     setLayout(new BorderLayout());
 
-    toolbar.setTextPanel(textPanel);
-    toolbar.setStringListener(text -> textPanel.appendText(text));
+    TextPanel textPanel = new TextPanel();
+    Toolbar toolbar = new Toolbar(textPanel, textPanel::appendText);
 
     add(toolbar, BorderLayout.NORTH);
     add(textPanel, BorderLayout.CENTER);

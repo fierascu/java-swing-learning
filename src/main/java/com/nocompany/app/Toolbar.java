@@ -8,28 +8,25 @@ import javax.swing.JPanel;
 
 class Toolbar extends JPanel implements ActionListener {
 
-  private JButton helloButton = new JButton("Hello");
-
-  private JButton goodbyeButton = new JButton("Goodbye");
-
   private TextPanel textPanel;
 
   private StringListener textListener;
 
-  Toolbar() {
+  Toolbar(TextPanel textPanel, StringListener textListener) {
+    this();
+    this.textPanel = textPanel;
+    this.textListener = textListener;
+  }
+
+  private Toolbar() {
+    JButton helloButton = new JButton("Hello");
     helloButton.addActionListener(this);
+
+    JButton goodbyeButton = new JButton("Goodbye");
     goodbyeButton.addActionListener(this);
 
     add(helloButton);
     add(goodbyeButton);
-  }
-
-  void setTextPanel(TextPanel textPanel) {
-    this.textPanel = textPanel;
-  }
-
-  void setStringListener(StringListener listener) {
-    this.textListener = listener;
   }
 
   @Override
