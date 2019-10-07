@@ -2,7 +2,7 @@ package com.nocompany.app;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -11,9 +11,9 @@ class Toolbar extends JPanel implements ActionListener {
 
   private TextPanel textPanel;
 
-  private Function textListener;
+  private Consumer textListener;
 
-  Toolbar(TextPanel textPanel, Function<String, String> textListener) {
+  Toolbar(TextPanel textPanel, Consumer<String> textListener) {
     this();
     this.textPanel = textPanel;
     this.textListener = textListener;
@@ -34,7 +34,7 @@ class Toolbar extends JPanel implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     JButton clicked = (JButton)e.getSource();
     if (textListener != null && clicked != null) {
-      textListener.apply(clicked.getText() + '\n');
+      textListener.accept(clicked.getText() + '\n');
     }
   }
 }
