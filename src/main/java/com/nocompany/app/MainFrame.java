@@ -12,7 +12,9 @@ class MainFrame extends JFrame {
 
     TextPanel textPanel = new TextPanel();
     Toolbar toolbar = new Toolbar(textPanel, textPanel::appendText);
+    FormPanel formPanel = new FormPanel();
 
+    add(formPanel, BorderLayout.WEST);
     add(toolbar, BorderLayout.NORTH);
     add(textPanel, BorderLayout.CENTER);
 
