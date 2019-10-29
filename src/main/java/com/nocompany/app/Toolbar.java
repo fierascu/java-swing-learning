@@ -1,5 +1,6 @@
 package com.nocompany.app;
 
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.function.Consumer;
@@ -9,13 +10,10 @@ import javax.swing.JPanel;
 
 class Toolbar extends JPanel implements ActionListener {
 
-  private TextPanel textPanel;
+  private Consumer<String> textListener;
 
-  private Consumer textListener;
-
-  Toolbar(TextPanel textPanel, Consumer<String> textListener) {
+  Toolbar(Consumer<String> textListener) {
     this();
-    this.textPanel = textPanel;
     this.textListener = textListener;
   }
 
@@ -25,6 +23,8 @@ class Toolbar extends JPanel implements ActionListener {
 
     JButton goodbyeButton = new JButton("Goodbye");
     goodbyeButton.addActionListener(this);
+
+    setLayout(new FlowLayout(FlowLayout.LEFT));
 
     add(helloButton);
     add(goodbyeButton);

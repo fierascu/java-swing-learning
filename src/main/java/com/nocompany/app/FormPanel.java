@@ -30,7 +30,7 @@ class FormPanel extends JPanel {
 
   private FormListener formListener;
 
-  private JList<String> ageList;
+  private JList<AgeCategory> ageList;
 
   FormPanel() {
     Dimension dim = getPreferredSize();
@@ -43,10 +43,10 @@ class FormPanel extends JPanel {
     occupationField = new JTextField(10);
     ageList = new JList<>();
 
-    DefaultListModel<String> ageModel = new DefaultListModel<>();
-    ageModel.addElement("Under 18");
-    ageModel.addElement("18 to 65");
-    ageModel.addElement("65 or over");
+    DefaultListModel<AgeCategory> ageModel = new DefaultListModel<>();
+    ageModel.addElement(new AgeCategory(0, "Under 18"));
+    ageModel.addElement(new AgeCategory(1, "18 to 65"));
+    ageModel.addElement(new AgeCategory(2, "65 or over"));
     ageList.setModel(ageModel);
 
     ageList.setPreferredSize(new Dimension(110, 70));
@@ -57,10 +57,10 @@ class FormPanel extends JPanel {
       public void actionPerformed(ActionEvent e) {
         String name = nameField.getText();
         String occupation = occupationField.getText();
-        String ageCat = ageList.getSelectedValue();
+        AgeCategory ageCat = ageList.getSelectedValue();
 
         System.out.println(ageCat);
-        FormEvent ev = new FormEvent(this, name, occupation);
+        FormEvent ev = new FormEvent(this, name, occupation, ageCat.getId());
 
         if (formListener != null) {
           formListener.formEventOccurred(ev);
@@ -132,5 +132,24 @@ class FormPanel extends JPanel {
 
   void setFormListener(FormListener listener) {
     this.formListener = listener;
+  }
+}
+
+class AgeCategory {
+  private int id;
+
+  private String text;
+
+  AgeCategory(int id, String text) {
+    this.id = id;
+    this.text = text;
+  }
+
+  public String toString() {
+    return text;
+  }
+
+  int getId() {
+    return id;
   }
 }
